@@ -1,415 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="What Vitrine Taj creates — kinetic motion displays, 3D printed sculpture, original painted art, seasonal displays, and full installation. All 100% custom.">
-  <title>What We Create — Vitrine Taj</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .services-hero { padding: calc(var(--nav-height) + 6rem) 5rem 5rem; position: relative; overflow: hidden; }
-    .services-hero::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: linear-gradient(to right, transparent, rgba(201,149,58,.3), transparent);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="What Vitrine Taj creates — kinetic displays, 3D sculpture, original art, seasonal installs. All 100% custom.">
+<title>What We Create — Vitrine Taj</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.displays { padding:5rem 5rem 8rem;background:var(--night); }
+.displays-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(126,184,201,0.06);margin-top:4rem; }
+.display-card { background:var(--night);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s;border:1px solid transparent; }
+.display-card::after { content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--orange),var(--blue));transform:scaleX(0);transition:transform .35s;transform-origin:left; }
+.display-card:hover { background:var(--dusk-mid);border-color:rgba(126,184,201,0.1); }
+.display-card:hover::after { transform:scaleX(1); }
+.dc-icon { width:56px;height:56px;border:1px solid rgba(126,184,201,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:2rem;font-size:1.4rem;transition:border-color .3s,transform .4s,box-shadow .3s; }
+.display-card:hover .dc-icon { border-color:var(--blue);transform:rotate(8deg);box-shadow:0 0 18px rgba(126,184,201,0.15); }
+.dc-title { font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;margin-bottom:1rem;line-height:1.2; }
+.dc-desc { font-size:.7rem;line-height:1.95;color:var(--muted-lt); }
+.dc-tag { margin-top:2rem;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--orange); }
+.dc-num { position:absolute;top:2rem;right:2rem;font-size:.5rem;letter-spacing:.2em;color:rgba(126,184,201,0.08); }
 
-    /* Main services */
-    .service-block {
-      padding: 7rem 5rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;
-      border-bottom: 1px solid rgba(242,235,224,.05);
-      position: relative;
-    }
-    .service-block:nth-child(even) { background: var(--dusk); }
-    .service-block--flip .service-block__visual { order: -1; }
+/* Who we serve */
+.serve { padding:8rem 5rem;display:grid;grid-template-columns:1fr 1.4fr;gap:8rem;align-items:start;background:var(--dusk); }
+.serve-list { margin-top:3rem;display:flex;flex-direction:column; }
+.serve-item { display:flex;align-items:center;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.75rem;letter-spacing:.08em;color:var(--muted-lt);transition:color .3s;cursor:default; }
+.serve-item:hover { color:var(--cream); }
+.serve-item::before { content:'';width:.4rem;height:.4rem;background:var(--orange);border-radius:50%;flex-shrink:0;transition:transform .3s; }
+.serve-item:hover::before { transform:scale(1.6); }
+.serve-pull { font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.6rem);font-style:italic;line-height:1.4;color:var(--cream);margin-top:2rem;position:relative;padding-left:2rem; }
+.serve-pull::before { content:'';position:absolute;left:0;top:.3em;width:3px;height:calc(100% - .6em);background:var(--orange); }
+.serve-body { font-size:.77rem;line-height:2;color:var(--muted-lt);margin-top:2rem; }
+.serve-body strong { color:var(--cream);font-weight:400; }
 
-    .service-block__num {
-      font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: 1.2rem; display: block;
-    }
-    .service-block__title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 3.2rem);
-      font-weight: 400; line-height: 1.1; margin-bottom: 2rem;
-    }
-    .service-block__title em { font-style: italic; color: var(--gold); }
-    .service-block__body { font-size: .78rem; line-height: 2.1; color: var(--dusty); }
-    .service-block__body strong { color: var(--cream); font-weight: 400; }
-    .service-block__body p + p { margin-top: 1.2rem; }
-    .service-block__features {
-      margin-top: 2rem;
-      display: flex; flex-direction: column; gap: .7rem;
-    }
-    .service-block__feature {
-      display: flex; gap: 1rem; align-items: baseline;
-      font-size: .68rem; color: var(--dusty);
-    }
-    .service-block__feature::before {
-      content: '→'; color: var(--terracotta); flex-shrink: 0;
-    }
-    .service-block__feature strong { color: var(--cream); font-weight: 400; }
-
-    /* Visual placeholder (until real photos) */
-    .service-block__visual {
-      aspect-ratio: 4/3;
-      background: var(--dusk-light);
-      border: 1px solid rgba(242,235,224,.08);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 1rem; position: relative; overflow: hidden;
-    }
-    .service-block:nth-child(even) .service-block__visual { background: var(--night); }
-    .visual-icon { font-size: 4rem; opacity: .4; }
-    .visual-label {
-      font-size: .55rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--dusty);
-    }
-    .visual-placeholder-note {
-      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-      font-size: .5rem; letter-spacing: .15em; text-transform: uppercase;
-      color: rgba(242,235,224,.2); white-space: nowrap;
-    }
-    /* Animated decorative elements in visuals */
-    .vis-shape {
-      position: absolute; border: 1px solid;
-      animation: floatShape var(--dur, 7s) ease-in-out infinite;
-      animation-delay: var(--delay, 0s);
-    }
-
-    /* Shop types grid */
-    .shop-types { padding: 7rem 5rem; background: var(--dusk); }
-    .shop-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
-      background: rgba(242,235,224,.05); margin-top: 4rem;
-    }
-    .shop-card {
-      background: var(--dusk); padding: 2.5rem 2rem;
-      text-align: center;
-      transition: background var(--transition-mid);
-    }
-    .shop-card:hover { background: var(--dusk-light); }
-    .shop-card__icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
-    .shop-card__name {
-      font-family: var(--font-display); font-size: 1.1rem; font-weight: 400;
-      margin-bottom: .5rem;
-    }
-    .shop-card__note { font-size: .62rem; color: var(--dusty); line-height: 1.7; }
-
-    /* Promise banner */
-    .promise {
-      padding: 6rem 5rem;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .promise::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(196,81,42,.07) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .promise__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 5rem);
-      font-weight: 400; max-width: 800px; margin: 0 auto;
-      line-height: 1.1;
-    }
-    .promise__title em { font-style: italic; color: var(--gold); }
-    .promise__sub {
-      font-size: .8rem; color: var(--dusty); margin: 2rem auto 3rem;
-      max-width: 520px; line-height: 2;
-    }
-
-    @media (max-width: 1024px) {
-      .services-hero, .shop-types, .promise { padding: calc(var(--nav-height) + 3rem) 2.5rem 3rem; }
-      .service-block { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2.5rem; }
-      .service-block--flip .service-block__visual { order: 0; }
-      .shop-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .shop-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+@media(max-width:1024px){
+  .displays { padding:5rem 2.5rem 6rem; }
+  .displays-grid { grid-template-columns:1fr; }
+  .serve { grid-template-columns:1fr;gap:4rem;padding:6rem 2.5rem; }
+}
+</style>
 </head>
 <body>
-  <div class="cursor"></div>
-  <div class="cursor-ring"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
 
-  <nav class="nav">
-    <a class="nav__logo" href="index.html">Vitrine <span>Taj</span></a>
-    <div class="nav__links">
-      <a class="nav__link" href="index.html">Home</a>
-      <a class="nav__link" href="about.html">About</a>
-      <a class="nav__link nav__link--active" href="services.html">What We Create</a>
-      <a class="nav__link" href="process.html">Process</a>
-      <a class="nav__link" href="portfolio.html">Portfolio</a>
-      <a class="nav__link" href="contact.html">Contact</a>
-    </div>
-    <a class="nav__cta" href="contact.html">Get a Quote</a>
-    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav__drawer">
-    <a class="nav__link" href="index.html">Home</a>
-    <a class="nav__link" href="about.html">About</a>
-    <a class="nav__link" href="services.html">What We Create</a>
-    <a class="nav__link" href="process.html">Process</a>
-    <a class="nav__link" href="portfolio.html">Portfolio</a>
-    <a class="nav__link" href="contact.html">Contact</a>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">Vitrine <span>Taj</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">Our Story</a>
+    <a href="services.html">What We Create</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Get a Quote</a>
   </div>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="about.html">Our Story</a>
+  <a href="services.html">What We Create</a>
+  <a href="process.html">Process</a>
+  <a href="contact.html">Get a Quote</a>
+</div>
 
-  <section class="services-hero">
-    <div class="page-hero__eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">What We Create</div>
-    <h1 class="page-hero__title" style="opacity:0;animation:riseIn .9s .4s forwards;">
-      Every display<br>built from<br><em>nothing.</em>
-    </h1>
-    <p class="page-hero__sub" style="opacity:0;animation:riseIn .9s .6s forwards;">
-      No templates. No catalogue parts. No off-the-shelf props. <strong>Every Vitrine Taj display is custom designed and custom built</strong> — from the first sketch to the final screw. Here's what that looks like.
-    </p>
-  </section>
+<div class="page-hero">
+  <div class="page-hero-eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">What We Create</div>
+  <h1 style="opacity:0;animation:riseIn .9s .3s forwards;">Every display<br>built from <em>nothing.</em></h1>
+  <p>No templates. No catalogue parts. No off-the-shelf props. <strong>Every Vitrine Taj display is custom designed and custom built</strong> — from the first sketch to the final screw.</p>
+</div>
 
-  <!-- SERVICE 01 -->
-  <section class="service-block">
-    <div class="reveal">
-      <span class="service-block__num">Service 01</span>
-      <h2 class="service-block__title">Kinetic &amp; <em>Automated</em> Displays</h2>
-      <div class="service-block__body">
-        <p><strong>Motion is the most powerful tool in window display.</strong> A still image competes with every other static thing on the street. A moving display wins every time.</p>
-        <p>We engineer custom kinetic mechanisms — rotating elements, oscillating figures, rising and falling components, synchronized multi-part sequences — that bring your window to life 24 hours a day.</p>
-        <p>Every mechanism is designed, built, and tested in-house. We choose materials for beauty and durability, and size motors for quiet, reliable long-term operation.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Custom-engineered motion</strong> — no off-the-shelf kits</div>
-        <div class="service-block__feature"><strong>Silent, continuous operation</strong> — runs all day, every day</div>
-        <div class="service-block__feature"><strong>Single and multi-element choreography</strong></div>
-        <div class="service-block__feature"><strong>Timer and sensor integration</strong> available</div>
-      </div>
+<section class="displays">
+  <div class="displays-grid">
+    <div class="display-card reveal">
+      <span class="dc-num">001</span>
+      <div class="dc-icon">⚙️</div>
+      <h3 class="dc-title">Kinetic &amp; Automated Displays</h3>
+      <p class="dc-desc">Custom-engineered motion mechanisms — rotating, oscillating, rising and falling — that bring your display to life around the clock. We design and build everything in-house, from the motor logic to the final finish.</p>
+      <p class="dc-tag">→ Motion Design · Automation · Electronics</p>
     </div>
-    <div class="service-block__visual reveal">
-      <div class="vis-shape" style="width:80px;height:80px;top:20%;left:15%;border-color:rgba(201,149,58,.5);--dur:8s;transform:rotate(15deg);"></div>
-      <div class="vis-shape" style="width:50px;height:50px;top:55%;left:60%;border-radius:50%;border-color:rgba(122,158,126,.4);--dur:6s;--delay:-3s;"></div>
-      <div class="vis-shape" style="width:40px;height:40px;top:70%;left:20%;border-color:rgba(196,81,42,.5);--dur:9s;--delay:-1s;transform:rotate(45deg);"></div>
-      <div class="visual-icon" style="position:relative;z-index:1;">⚙️</div>
-      <div class="visual-label" style="position:relative;z-index:1;">Kinetic Motion</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
+    <div class="display-card reveal">
+      <span class="dc-num">002</span>
+      <div class="dc-icon">🖨️</div>
+      <h3 class="dc-title">3D Printed Sculpture &amp; Props</h3>
+      <p class="dc-desc">One-of-a-kind sculptural pieces fabricated specifically for your brand — from intricate geometric forms to figurative characters. Nothing off-the-shelf. Every piece designed to tell your story.</p>
+      <p class="dc-tag">→ Custom Fabrication · Sculpture · 3D Design</p>
     </div>
-  </section>
+    <div class="display-card reveal">
+      <span class="dc-num">003</span>
+      <div class="dc-icon">🎨</div>
+      <h3 class="dc-title">Painted Art &amp; Illustration</h3>
+      <p class="dc-desc">Hand-painted backdrops, illustrated scenes, and original artwork that give your display depth and atmosphere. A painterly touch that no screen or print can replicate.</p>
+      <p class="dc-tag">→ Fine Art · Hand-Painted · Illustration</p>
+    </div>
+    <div class="display-card reveal">
+      <span class="dc-num">004</span>
+      <div class="dc-icon">✨</div>
+      <h3 class="dc-title">Seasonal &amp; Themed Displays</h3>
+      <p class="dc-desc">Holiday windows, launch campaigns, seasonal refreshes — we design complete themed experiences that keep your storefront feeling current and alive all year round.</p>
+      <p class="dc-tag">→ Seasonal · Campaign · Refresh</p>
+    </div>
+    <div class="display-card reveal">
+      <span class="dc-num">005</span>
+      <div class="dc-icon">📐</div>
+      <h3 class="dc-title">Concept &amp; Brand Storytelling</h3>
+      <p class="dc-desc">Before anything is built, we develop the narrative. What's the mood? The palette? The one thing a passerby should feel? We art-direct the full concept so every element works together.</p>
+      <p class="dc-tag">→ Art Direction · Concept · Brand</p>
+    </div>
+    <div class="display-card reveal">
+      <span class="dc-num">006</span>
+      <div class="dc-icon">🔧</div>
+      <h3 class="dc-title">Full Install &amp; Setup</h3>
+      <p class="dc-desc">We handle delivery, installation, and testing ourselves. Your display arrives turnkey — everything secured, motion tested, and ready to run. Maintenance and seasonal swap-outs available.</p>
+      <p class="dc-tag">→ Installation · Maintenance · Support</p>
+    </div>
+  </div>
+</section>
 
-  <!-- SERVICE 02 -->
-  <section class="service-block service-block--flip">
-    <div class="reveal">
-      <span class="service-block__num">Service 02</span>
-      <h2 class="service-block__title"><em>3D Printed</em> Sculpture &amp; Props</h2>
-      <div class="service-block__body">
-        <p>3D printing lets us make things that simply can't be bought — <strong>sculptural pieces designed entirely around your brand</strong>, with forms, details, and textures that are impossible to source anywhere else.</p>
-        <p>We model everything from scratch and print in-house, which means we control every dimension, every curve, every surface finish. From delicate filigree jewellery display props to bold architectural statement pieces — we can build it.</p>
-        <p>Pieces can be painted, finished, gilded, or left raw depending on the aesthetic. Many designs incorporate motion and work in combination with our kinetic systems.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Fully original designs</strong> — modelled from scratch for you</div>
-        <div class="service-block__feature"><strong>In-house printing</strong> — full quality control</div>
-        <div class="service-block__feature"><strong>Multiple materials and finishes</strong></div>
-        <div class="service-block__feature"><strong>Integrates with kinetic systems</strong></div>
-      </div>
+<section class="serve">
+  <div class="serve-left reveal">
+    <div class="section-label">Who We Serve</div>
+    <h2 class="section-heading">Made for<br><em>independent</em><br>shops.</h2>
+    <div class="serve-list">
+      <div class="serve-item">Clothing &amp; fashion boutiques</div>
+      <div class="serve-item">Florists &amp; plant shops</div>
+      <div class="serve-item">Jewelry &amp; accessories</div>
+      <div class="serve-item">Bookshops &amp; gift stores</div>
+      <div class="serve-item">Bakeries &amp; food retailers</div>
+      <div class="serve-item">Spas, studios &amp; wellness</div>
+      <div class="serve-item">Any shop with a great story to tell</div>
     </div>
-    <div class="service-block__visual reveal">
-      <div class="vis-shape" style="width:100px;height:100px;top:25%;left:50%;border-color:rgba(201,149,58,.4);--dur:10s;transform:rotate(20deg);"></div>
-      <div class="vis-shape" style="width:60px;height:60px;top:60%;left:15%;border-color:rgba(196,81,42,.4);--dur:7s;--delay:-2s;"></div>
-      <div class="visual-icon" style="position:relative;z-index:1;">🖨️</div>
-      <div class="visual-label" style="position:relative;z-index:1;">3D Fabrication</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
+  </div>
+  <div class="serve-right reveal">
+    <div class="serve-pull">"Big brands spend millions making people feel something. Your window can do the same — for a fraction of the cost."</div>
+    <div class="serve-body">
+      <p>We work exclusively with <strong>small and independent shops</strong> — the kind of businesses where the owner actually cares about every customer who walks through the door.</p>
+      <p style="margin-top:1.2rem">You don't need a huge budget or a massive storefront. You need a window that <strong>stops one person, then another, then another.</strong> That's what we build.</p>
     </div>
-  </section>
+    <div style="margin-top:2.5rem;"><a href="contact.html" class="btn-fill"><span>Start a Project</span></a></div>
+  </div>
+</section>
 
-  <!-- SERVICE 03 -->
-  <section class="service-block">
-    <div class="reveal">
-      <span class="service-block__num">Service 03</span>
-      <h2 class="service-block__title">Painted Art &amp; <em>Illustration</em></h2>
-      <div class="service-block__body">
-        <p>A hand-painted backdrop does something no print or screen can replicate — it <strong>signals craft, care, and originality</strong> in a way customers immediately feel, even if they can't say why.</p>
-        <p>Our original painted and illustrated work creates the atmosphere and depth that elevates a collection of elements into a unified display. Whether it's a full backdrop scene, painted glass panels, illustrated figures, or decorative details — every brushstroke is in service of the story.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Original paintings</strong> — never reproductions</div>
-        <div class="service-block__feature"><strong>Backdrop scenes</strong>, illustrated panels, glass painting</div>
-        <div class="service-block__feature"><strong>Seasonal and permanent</strong> options</div>
-        <div class="service-block__feature">Integrates with sculptural and kinetic elements</div>
-      </div>
-    </div>
-    <div class="service-block__visual reveal">
-      <div class="visual-icon">🎨</div>
-      <div class="visual-label">Original Art</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
-    </div>
-  </section>
+<footer>
+  <div class="footer-logo">Vitrine <span>Taj</span></div>
+  <div class="footer-tagline">Engineering Wonder · Custom Window Displays</div>
+  <div class="footer-copy">© 2026 Taj LLC</div>
+</footer>
 
-  <!-- SERVICE 04 -->
-  <section class="service-block service-block--flip">
-    <div class="reveal">
-      <span class="service-block__num">Service 04</span>
-      <h2 class="service-block__title">Seasonal &amp; <em>Campaign</em> Displays</h2>
-      <div class="service-block__body">
-        <p>Your window should change. A display that looks the same in February and October is a missed opportunity — and a signal to regular passersby that nothing is happening inside.</p>
-        <p>We design and build seasonal refreshes and campaign-specific displays that <strong>keep your storefront feeling current, surprising, and alive</strong> all year round. Holiday windows, launch events, themed seasons — we plan it all with you.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Full seasonal planning</strong> — we map the year with you</div>
-        <div class="service-block__feature"><strong>Modular systems</strong> that swap efficiently</div>
-        <div class="service-block__feature">Holiday, launch, and promotional themes</div>
-        <div class="service-block__feature">Ongoing relationship and maintenance support</div>
-      </div>
-    </div>
-    <div class="service-block__visual reveal">
-      <div class="visual-icon">✨</div>
-      <div class="visual-label">Seasonal &amp; Campaign</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
-    </div>
-  </section>
-
-  <!-- SERVICE 05 -->
-  <section class="service-block">
-    <div class="reveal">
-      <span class="service-block__num">Service 05</span>
-      <h2 class="service-block__title">Concept &amp; <em>Brand</em> Storytelling</h2>
-      <div class="service-block__body">
-        <p>Before we build anything, we develop the story. <strong>What should a stranger feel the moment they see your window?</strong> What's the one thing they should remember? What's the narrative thread that ties every element together?</p>
-        <p>This is the work that separates a great display from a good one — and it's where our backgrounds in engineering, art, and client consulting come together most powerfully.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Brand discovery</strong> and story development</div>
-        <div class="service-block__feature">Mood boards, palette, and concept presentation</div>
-        <div class="service-block__feature">3D visualisations before build sign-off</div>
-        <div class="service-block__feature">Full art direction throughout</div>
-      </div>
-    </div>
-    <div class="service-block__visual reveal">
-      <div class="visual-icon">📐</div>
-      <div class="visual-label">Concept &amp; Direction</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
-    </div>
-  </section>
-
-  <!-- SERVICE 06 -->
-  <section class="service-block service-block--flip">
-    <div class="reveal">
-      <span class="service-block__num">Service 06</span>
-      <h2 class="service-block__title">Full Install &amp; <em>Ongoing</em> Support</h2>
-      <div class="service-block__body">
-        <p>We handle delivery, installation, and testing ourselves. When we leave, <strong>everything is secured, motion-tested, and ready to run</strong>. There is nothing left for you to figure out.</p>
-        <p>We also offer ongoing maintenance visits, seasonal swap-outs, and support for any issues that arise. When you work with Vitrine Taj, the relationship doesn't end at install day.</p>
-      </div>
-      <div class="service-block__features">
-        <div class="service-block__feature"><strong>Full installation</strong> handled by us, end to end</div>
-        <div class="service-block__feature">Motion and lighting tested on-site</div>
-        <div class="service-block__feature">Maintenance and swap-out visits available</div>
-        <div class="service-block__feature">Ongoing support and relationship</div>
-      </div>
-    </div>
-    <div class="service-block__visual reveal">
-      <div class="visual-icon">🔧</div>
-      <div class="visual-label">Install &amp; Support</div>
-      <div class="visual-placeholder-note">Photos coming soon</div>
-    </div>
-  </section>
-
-  <!-- SHOP TYPES -->
-  <section class="shop-types">
-    <div class="reveal">
-      <div class="section-label">Who We Serve</div>
-      <h2 class="section-heading">We love working with<br><em>all kinds of shops.</em></h2>
-    </div>
-    <div class="shop-grid">
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">👗</span>
-        <div class="shop-card__name">Fashion &amp; Clothing</div>
-        <div class="shop-card__note">Boutiques, vintage stores, accessories — where style is the whole story</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">🌸</span>
-        <div class="shop-card__name">Florists &amp; Plants</div>
-        <div class="shop-card__note">Motion + botanicals = windows that are genuinely magical</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">💎</span>
-        <div class="shop-card__name">Jewellery &amp; Accessories</div>
-        <div class="shop-card__note">Precision craft and delicate forms — our 3D work shines here</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">📚</span>
-        <div class="shop-card__name">Books &amp; Gifts</div>
-        <div class="shop-card__note">Storytelling businesses deserve the most story-rich windows</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">🥐</span>
-        <div class="shop-card__name">Food &amp; Bakeries</div>
-        <div class="shop-card__note">Warmth, texture, and appetite — the most sensory windows we make</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">🕯️</span>
-        <div class="shop-card__name">Wellness &amp; Beauty</div>
-        <div class="shop-card__note">Atmosphere and calm — windows that feel like exhaling</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">🏠</span>
-        <div class="shop-card__name">Home &amp; Interiors</div>
-        <div class="shop-card__note">The shop window as a room — immersive and tactile</div>
-      </div>
-      <div class="shop-card reveal hoverable">
-        <span class="shop-card__icon">✦</span>
-        <div class="shop-card__name">Something Else?</div>
-        <div class="shop-card__note">If you have a great shop with a great story, we want to talk</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROMISE -->
-  <section class="promise">
-    <div class="reveal">
-      <h2 class="promise__title">Whatever we build, one thing<br>never changes: <em>it's made for<br>you and nobody else.</em></h2>
-      <p class="promise__sub">Every Vitrine Taj display is a one-of-a-kind original. We don't reuse designs, resell concepts, or ever show up with something that already exists. Your display is yours.</p>
-      <a class="btn btn--fill" href="contact.html"><span>Start Your Project</span></a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer__top">
-      <div>
-        <div class="footer__logo">Vitrine <span>Taj</span></div>
-        <p class="footer__tagline">Fully custom window displays for independent shops. Engineering wonder, one window at a time.</p>
-      </div>
-      <div>
-        <div class="footer__col-title">Pages</div>
-        <div class="footer__col-links">
-          <a href="about.html">About Us</a>
-          <a href="services.html">What We Create</a>
-          <a href="process.html">Our Process</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Services</div>
-        <div class="footer__col-links">
-          <a href="services.html">Kinetic Displays</a>
-          <a href="services.html">3D Sculpture</a>
-          <a href="services.html">Painted Art</a>
-          <a href="services.html">Seasonal Displays</a>
-          <a href="services.html">Full Installation</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Get In Touch</div>
-        <div class="footer__col-links">
-          <a href="mailto:hello@vitrinetaj.com">hello@vitrinetaj.com</a>
-          <a href="contact.html">Request a Quote</a>
-          <a href="#">Instagram</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Taj LLC — All rights reserved</div>
-      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

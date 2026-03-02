@@ -1,447 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Get in touch with Vitrine Taj — request a quote for a custom window display for your shop.">
-  <title>Contact — Vitrine Taj</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .contact-hero { padding: calc(var(--nav-height) + 6rem) 5rem 5rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get in touch with Vitrine Taj — request a quote for your custom window display.">
+<title>Get a Quote — Vitrine Taj</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.contact { padding:5rem 5rem 8rem;display:grid;grid-template-columns:1fr 1.1fr;gap:8rem;align-items:start; }
+.contact-intro { font-size:.82rem;line-height:2.1;color:var(--muted-lt);margin-top:2rem; }
+.contact-intro strong { color:var(--cream);font-weight:400; }
+.contact-details { margin-top:3rem;display:flex;flex-direction:column;gap:1.2rem; }
+.cd-row { display:flex;gap:1.5rem;font-size:.65rem;align-items:baseline; }
+.cd-label { color:var(--orange);letter-spacing:.15em;text-transform:uppercase;font-size:.52rem;width:80px;flex-shrink:0; }
+.cd-val { color:var(--cream);opacity:.8; }
 
-    /* Main contact layout */
-    .contact-main {
-      padding: 5rem 5rem 8rem;
-      display: grid; grid-template-columns: 1fr 1.3fr; gap: 8rem;
-      align-items: start;
-    }
+/* Why work with us */
+.why-list { margin-top:3rem;display:flex;flex-direction:column;gap:0; }
+.why-item { display:flex;gap:1.2rem;align-items:flex-start;padding:1.2rem 0;border-bottom:1px solid rgba(126,184,201,0.07); }
+.why-item::before { content:'';width:.38rem;height:.38rem;background:var(--blue);border-radius:50%;flex-shrink:0;margin-top:.45rem; }
+.why-item-text { font-size:.72rem;line-height:1.9;color:var(--muted-lt); }
+.why-item-text strong { color:var(--cream);font-weight:400; }
 
-    /* Left info column */
-    .contact-info { position: sticky; top: calc(var(--nav-height) + 2rem); }
+/* Form */
+.quote-form { background:var(--dusk);padding:3rem;border:1px solid rgba(126,184,201,0.08); }
+.quote-form h3 { font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;margin-bottom:2rem; }
+.form-row { margin-bottom:1.5rem; }
+.form-row label { display:block;font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem; }
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width:100%;padding:.9rem 1.2rem;
+  background:rgba(126,184,201,0.04);
+  border:1px solid rgba(126,184,201,0.12);
+  border-bottom-color:rgba(126,184,201,0.28);
+  color:var(--cream);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:300;
+  outline:none;transition:border-color .3s,background .3s;cursor:none;appearance:none;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus { border-color:var(--gold);background:rgba(201,149,58,0.04); }
+.form-row input::placeholder,
+.form-row textarea::placeholder { color:rgba(240,232,216,0.2); }
+.form-row select option { background:var(--dusk); }
+.form-row textarea { resize:vertical;min-height:130px; }
+.form-grid { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
 
-    .contact-info__body {
-      font-size: .8rem; line-height: 2.1; color: var(--dusty); margin-top: 2rem; margin-bottom: 3rem;
-    }
-    .contact-info__body strong { color: var(--cream); font-weight: 400; }
+/* Checkbox group */
+.checkbox-group { display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem; }
+.checkbox-label { display:flex;align-items:center;gap:.8rem;font-size:.68rem;color:var(--muted-lt);cursor:none; }
+.checkbox-label input[type="checkbox"] { width:14px;height:14px;accent-color:var(--orange);cursor:none; }
+.checkbox-label:hover { color:var(--cream); }
 
-    .contact-detail-block {
-      display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;
-    }
-    .cd {
-      display: flex; gap: 1.5rem; align-items: flex-start;
-    }
-    .cd__icon {
-      width: 2.5rem; height: 2.5rem; border: 1px solid rgba(201,149,58,.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .9rem; flex-shrink: 0;
-      transition: border-color var(--transition-mid);
-    }
-    .cd:hover .cd__icon { border-color: var(--gold); }
-    .cd__label {
-      font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: .3rem;
-    }
-    .cd__val { font-size: .72rem; color: var(--cream); letter-spacing: .05em; }
-    .cd__note { font-size: .6rem; color: var(--dusty); margin-top: .2rem; }
+.form-submit { width:100%;padding:1.1rem;background:var(--orange);border:none;color:var(--cream);font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;cursor:none;margin-top:.5rem;position:relative;overflow:hidden;transition:background .3s; }
+.form-submit::after { content:'';position:absolute;inset:0;background:var(--blue-deep);transform:translateX(-101%);transition:transform .35s ease; }
+.form-submit:hover::after { transform:translateX(0); }
+.form-submit span { position:relative;z-index:1; }
 
-    /* What to expect */
-    .expect-block {
-      background: var(--dusk);
-      padding: 2rem;
-      border-left: 2px solid var(--gold);
-    }
-    .expect-block__title {
-      font-size: .55rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.2rem;
-    }
-    .expect-list { display: flex; flex-direction: column; gap: .8rem; }
-    .expect-item {
-      display: flex; gap: .8rem; font-size: .68rem; line-height: 1.7; color: var(--dusty);
-    }
-    .expect-item::before { content: '✓'; color: var(--sage); flex-shrink: 0; }
-    .expect-item strong { color: var(--cream); font-weight: 400; }
+.success-msg { display:none;text-align:center;padding:3rem 2rem; }
+.success-msg h3 { font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;margin-bottom:1rem; }
+.success-msg h3 em { color:var(--gold);font-style:italic; }
+.success-msg p { font-size:.75rem;line-height:2;color:var(--muted-lt); }
 
-    /* Form */
-    .quote-form { }
-    .quote-form__title {
-      font-family: var(--font-display);
-      font-size: 1.8rem; font-weight: 400; margin-bottom: .5rem;
-    }
-    .quote-form__sub {
-      font-size: .7rem; color: var(--dusty); line-height: 1.8; margin-bottom: 2.5rem;
-    }
-
-    .form-section-title {
-      font-size: .55rem; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: 1.2rem; margin-top: 2.5rem;
-      padding-bottom: .6rem; border-bottom: 1px solid rgba(242,235,224,.07);
-    }
-
-    .form-row { margin-bottom: 1.4rem; }
-    .form-row label {
-      display: block; font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--dusty); margin-bottom: .5rem;
-    }
-    .form-row label span { color: var(--terracotta); margin-left: .2rem; }
-
-    .form-row input,
-    .form-row select,
-    .form-row textarea {
-      width: 100%; padding: .9rem 1.1rem;
-      background: rgba(242,235,224,.05);
-      border: 1px solid rgba(242,235,224,.1);
-      border-bottom-color: rgba(242,235,224,.2);
-      color: var(--cream);
-      font-family: var(--font-body); font-size: .75rem; font-weight: 300;
-      outline: none;
-      transition: border-color var(--transition-mid), background var(--transition-mid);
-      appearance: none; -webkit-appearance: none;
-    }
-    .form-row input:focus,
-    .form-row select:focus,
-    .form-row textarea:focus {
-      border-color: var(--gold);
-      background: rgba(201,149,58,.05);
-    }
-    .form-row select option { background: #1a1612; }
-    .form-row textarea { resize: vertical; min-height: 130px; }
-    .form-row input::placeholder,
-    .form-row textarea::placeholder { color: rgba(242,235,224,.2); }
-
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-
-    /* Checkbox group */
-    .checkbox-group { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .5rem; }
-    .checkbox-label {
-      display: flex; align-items: center; gap: .6rem;
-      font-size: .62rem; color: var(--dusty);
-      padding: .6rem 1rem; border: 1px solid rgba(242,235,224,.1);
-      cursor: none; transition: all var(--transition-mid);
-      user-select: none;
-    }
-    .checkbox-label:hover { border-color: rgba(201,149,58,.4); color: var(--cream); }
-    .checkbox-label input[type="checkbox"] { display: none; }
-    .checkbox-label.checked {
-      border-color: var(--terracotta);
-      color: var(--cream);
-      background: rgba(196,81,42,.1);
-    }
-    .checkbox-label .check-dot {
-      width: .5rem; height: .5rem; border-radius: 50%;
-      background: var(--terracotta); opacity: 0; transition: opacity var(--transition-fast);
-    }
-    .checkbox-label.checked .check-dot { opacity: 1; }
-
-    /* Range slider */
-    .range-labels {
-      display: flex; justify-content: space-between;
-      font-size: .55rem; color: var(--dusty); margin-top: .4rem;
-    }
-
-    /* Submit */
-    .form-submit-row { margin-top: 2rem; }
-    .form-submit {
-      width: 100%; padding: 1.2rem;
-      background: var(--terracotta); border: none;
-      color: var(--cream); font-family: var(--font-body);
-      font-size: .62rem; letter-spacing: .25em; text-transform: uppercase;
-      cursor: none; transition: background var(--transition-mid);
-      position: relative; overflow: hidden;
-    }
-    .form-submit::after {
-      content: ''; position: absolute; inset: 0; background: var(--gold);
-      transform: translateX(-101%); transition: transform var(--transition-mid);
-    }
-    .form-submit:hover::after { transform: translateX(0); }
-    .form-submit span { position: relative; z-index: 1; }
-    .form-note {
-      font-size: .55rem; color: var(--dusty); margin-top: 1rem; text-align: center; line-height: 1.8;
-    }
-
-    /* Success state */
-    .form-success {
-      display: none;
-      text-align: center; padding: 4rem 2rem;
-    }
-    .form-success__icon { font-size: 3rem; margin-bottom: 1.5rem; }
-    .form-success__title {
-      font-family: var(--font-display); font-size: 2rem; font-weight: 400; margin-bottom: 1rem;
-    }
-    .form-success__title em { font-style: italic; color: var(--gold); }
-    .form-success__body { font-size: .75rem; line-height: 2; color: var(--dusty); }
-
-    @media (max-width: 1024px) {
-      .contact-hero, .contact-main { padding: calc(var(--nav-height) + 3rem) 2.5rem 3rem; }
-      .contact-main { grid-template-columns: 1fr; gap: 4rem; }
-      .contact-info { position: static; }
-      .form-grid-3 { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
-    }
-  </style>
+@media(max-width:1024px){
+  .contact { grid-template-columns:1fr;gap:4rem;padding:5rem 2.5rem 6rem; }
+}
+@media(max-width:600px){
+  .form-grid { grid-template-columns:1fr; }
+  .quote-form { padding:2rem; }
+}
+</style>
 </head>
 <body>
-  <div class="cursor"></div>
-  <div class="cursor-ring"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
 
-  <nav class="nav">
-    <a class="nav__logo" href="index.html">Vitrine <span>Taj</span></a>
-    <div class="nav__links">
-      <a class="nav__link" href="index.html">Home</a>
-      <a class="nav__link" href="about.html">About</a>
-      <a class="nav__link" href="services.html">What We Create</a>
-      <a class="nav__link" href="process.html">Process</a>
-      <a class="nav__link" href="portfolio.html">Portfolio</a>
-      <a class="nav__link nav__link--active" href="contact.html">Contact</a>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">Vitrine <span>Taj</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">Our Story</a>
+    <a href="services.html">What We Create</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Get a Quote</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="about.html">Our Story</a>
+  <a href="services.html">What We Create</a>
+  <a href="process.html">Process</a>
+  <a href="contact.html">Get a Quote</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">Get In Touch</div>
+  <h1 style="opacity:0;animation:riseIn .9s .3s forwards;">Let's make your<br>window <em>unforgettable.</em></h1>
+  <p>Every project starts with a conversation. Tell us about your shop and what you're dreaming of — <strong>there's no project too small or too wild.</strong></p>
+</div>
+
+<section class="contact">
+  <div class="contact-left reveal">
+    <div class="section-label">Before You Write</div>
+    <h2 class="section-heading">A few things<br>good to <em>know.</em></h2>
+    <div class="contact-intro">
+      <p>We respond to every enquiry personally — usually within 24 hours. The form on the right takes about two minutes to fill in and helps us understand your project before we talk.</p>
+      <p style="margin-top:1.2rem">Not sure what you want yet? That's completely fine. <strong>Send us something vague.</strong> "I want my window to feel like a fairytale" is a great brief. We're good at running with that.</p>
     </div>
-    <a class="nav__cta" href="contact.html">Get a Quote</a>
-    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav__drawer">
-    <a class="nav__link" href="index.html">Home</a>
-    <a class="nav__link" href="about.html">About</a>
-    <a class="nav__link" href="services.html">What We Create</a>
-    <a class="nav__link" href="process.html">Process</a>
-    <a class="nav__link" href="portfolio.html">Portfolio</a>
-    <a class="nav__link" href="contact.html">Contact</a>
+
+    <div class="contact-details">
+      <div class="cd-row"><span class="cd-label">Email</span><span class="cd-val">hello@vitrinetaj.com</span></div>
+      <div class="cd-row"><span class="cd-label">Instagram</span><span class="cd-val">@vitrinetaj</span></div>
+      <div class="cd-row"><span class="cd-label">Every display</span><span class="cd-val">Custom designed from scratch</span></div>
+      <div class="cd-row"><span class="cd-label">Response</span><span class="cd-val">Usually within 24 hours</span></div>
+    </div>
+
+    <div class="section-label" style="margin-top:3rem;">Why Work With Us</div>
+    <div class="why-list">
+      <div class="why-item"><div class="why-item-text"><strong>Nothing off the shelf</strong> — every display is designed from scratch for your shop.</div></div>
+      <div class="why-item"><div class="why-item-text"><strong>You approve everything</strong> before we build a single component.</div></div>
+      <div class="why-item"><div class="why-item-text"><strong>We install it ourselves</strong> — no shipping crates, no DIY assembly.</div></div>
+      <div class="why-item"><div class="why-item-text"><strong>Ongoing support</strong> — we're here after opening night too.</div></div>
+    </div>
   </div>
 
-  <section class="contact-hero">
-    <div class="page-hero__eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">Get In Touch</div>
-    <h1 class="page-hero__title" style="opacity:0;animation:riseIn .9s .4s forwards;">
-      Let's make your<br>window <em>unmissable.</em>
-    </h1>
-    <p class="page-hero__sub" style="opacity:0;animation:riseIn .9s .6s forwards;">
-      Every project starts with a conversation. Fill in the form below and we'll be in touch within 48 hours to arrange a discovery call. <strong>No commitment, no pressure</strong> — just a chat about what's possible.
-    </p>
-  </section>
-
-  <section class="contact-main">
-    <!-- LEFT INFO -->
-    <div class="contact-info reveal">
-      <div class="section-label">Contact</div>
-
-      <div class="contact-info__body">
-        <p>We're a small studio and we respond to every enquiry personally. <strong>No automated replies, no account managers</strong> — you'll hear from the people who will actually be designing and building your display.</p>
-      </div>
-
-      <div class="contact-detail-block">
-        <div class="cd hoverable">
-          <div class="cd__icon">✉</div>
-          <div>
-            <div class="cd__label">Email</div>
-            <div class="cd__val">hello@vitrinetaj.com</div>
-            <div class="cd__note">We reply within 48 hours</div>
-          </div>
+  <div class="contact-right reveal">
+    <div class="quote-form" id="quoteForm">
+      <h3>Request a Quote</h3>
+      <div id="formFields">
+        <div class="form-grid">
+          <div class="form-row"><label>Your Name</label><input type="text" placeholder="Jane Smith"></div>
+          <div class="form-row"><label>Shop / Business Name</label><input type="text" placeholder="The Little Florist"></div>
         </div>
-        <div class="cd hoverable">
-          <div class="cd__icon">📸</div>
-          <div>
-            <div class="cd__label">Instagram</div>
-            <div class="cd__val">@vitrinetaj</div>
-            <div class="cd__note">Behind the scenes &amp; concepts</div>
-          </div>
+        <div class="form-grid">
+          <div class="form-row"><label>Email</label><input type="email" placeholder="jane@yourshop.com"></div>
+          <div class="form-row"><label>City / Location</label><input type="text" placeholder="Your city"></div>
         </div>
-        <div class="cd hoverable">
-          <div class="cd__icon">🌍</div>
-          <div>
-            <div class="cd__label">Serving</div>
-            <div class="cd__val">Independent shops everywhere</div>
-            <div class="cd__note">We travel for installation</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="expect-block">
-        <div class="expect-block__title">What happens next</div>
-        <div class="expect-list">
-          <div class="expect-item">We reply within <strong>48 hours</strong></div>
-          <div class="expect-item">We'll schedule a <strong>free 45-min discovery call</strong></div>
-          <div class="expect-item">You'll receive a <strong>concept proposal</strong> within 1–2 weeks</div>
-          <div class="expect-item"><strong>No commitment</strong> until you approve the concept</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT FORM -->
-    <div class="reveal">
-      <div id="quoteForm">
-        <h2 class="quote-form__title">Request a Quote</h2>
-        <p class="quote-form__sub">Tell us about your shop and your vision. The more detail you share, the better we can prepare for our first conversation.</p>
-
-        <div class="form-section-title">About You</div>
-        <div class="form-grid-2">
-          <div class="form-row">
-            <label>Your Name <span>*</span></label>
-            <input type="text" id="name" placeholder="Jane Smith" required>
-          </div>
-          <div class="form-row">
-            <label>Email Address <span>*</span></label>
-            <input type="email" id="email" placeholder="jane@yourshop.com" required>
-          </div>
-        </div>
-        <div class="form-grid-2">
-          <div class="form-row">
-            <label>Shop / Business Name <span>*</span></label>
-            <input type="text" id="shopName" placeholder="The Little Florist">
-          </div>
-          <div class="form-row">
-            <label>Your City / Location</label>
-            <input type="text" id="location" placeholder="Chicago, IL">
-          </div>
-        </div>
-
-        <div class="form-section-title">About Your Shop</div>
         <div class="form-row">
-          <label>Type of Shop <span>*</span></label>
-          <select id="shopType">
+          <label>Type of Shop</label>
+          <select>
             <option value="" disabled selected>Select your shop type</option>
             <option>Clothing &amp; Fashion Boutique</option>
             <option>Florist &amp; Plant Shop</option>
-            <option>Jewellery &amp; Accessories</option>
+            <option>Jewelry &amp; Accessories</option>
             <option>Bookshop &amp; Gift Store</option>
             <option>Bakery &amp; Food</option>
-            <option>Spa / Wellness / Beauty</option>
-            <option>Home &amp; Interiors</option>
-            <option>Other — I'll explain below</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>Approximate window dimensions</label>
-          <input type="text" id="dimensions" placeholder="e.g. 6ft wide × 5ft tall — rough estimate is fine">
-        </div>
-
-        <div class="form-section-title">Your Display Vision</div>
-        <div class="form-row">
-          <label>What types of display interest you? (select all that apply)</label>
-          <div class="checkbox-group">
-            <label class="checkbox-label hoverable"><input type="checkbox"><div class="check-dot"></div>Kinetic / Motion</label>
-            <label class="checkbox-label hoverable"><input type="checkbox"><div class="check-dot"></div>3D Printed Sculpture</label>
-            <label class="checkbox-label hoverable"><input type="checkbox"><div class="check-dot"></div>Painted Backdrops</label>
-            <label class="checkbox-label hoverable"><input type="checkbox"><div class="check-dot"></div>Seasonal Refresh</label>
-            <label class="checkbox-label hoverable"><input type="checkbox"><div class="check-dot"></div>Not sure — open to ideas</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>Tell us about your vision <span>*</span></label>
-          <textarea id="vision" placeholder="What do you want people to feel when they stop at your window? Any themes, moods, colours, or ideas you have in mind? Even a rough feeling is great — we're here to develop the rest."></textarea>
-        </div>
-        <div class="form-row">
-          <label>Is there a particular timeline or event in mind?</label>
-          <input type="text" id="timeline" placeholder="e.g. Holiday season, spring launch, no rush...">
-        </div>
-
-        <div class="form-section-title">Anything Else?</div>
-        <div class="form-row">
-          <label>How did you hear about us?</label>
-          <select id="referral">
-            <option value="" disabled selected>Select an option</option>
-            <option>Instagram</option>
-            <option>Google Search</option>
-            <option>Word of mouth / referral</option>
+            <option>Spa / Wellness / Studio</option>
             <option>Other</option>
           </select>
         </div>
         <div class="form-row">
-          <label>Anything else you'd like us to know?</label>
-          <textarea id="other" placeholder="Anything about your shop, your customers, your brand, or your situation that might be helpful for us to know." style="min-height:80px;"></textarea>
+          <label>What interests you? (select all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox"> Kinetic / motion display</label>
+            <label class="checkbox-label"><input type="checkbox"> 3D printed sculpture</label>
+            <label class="checkbox-label"><input type="checkbox"> Hand-painted artwork</label>
+            <label class="checkbox-label"><input type="checkbox"> Seasonal / themed display</label>
+            <label class="checkbox-label"><input type="checkbox"> Not sure yet — open to ideas</label>
+          </div>
         </div>
-
-        <div class="form-submit-row">
-          <button class="form-submit" id="submitBtn" type="button">
-            <span>Send My Request →</span>
-          </button>
-          <p class="form-note">We'll reply within 48 hours. No commitment required — this is just the start of a conversation.</p>
+        <div class="form-row">
+          <label>Tell us about your vision</label>
+          <textarea placeholder="What do you want people to feel when they see your window? Any themes, colours, or ideas in mind? Don't worry if it's vague — that's what we're here for."></textarea>
         </div>
+        <button class="form-submit" id="submitBtn"><span>Send My Request →</span></button>
       </div>
-
-      <!-- Success state -->
-      <div class="form-success" id="formSuccess">
-        <div class="form-success__icon">✦</div>
-        <h2 class="form-success__title">We've got it.<br><em>Talk soon.</em></h2>
-        <p class="form-success__body">
-          Thank you for reaching out — we'll be in touch within 48 hours to introduce ourselves properly and arrange a discovery call.<br><br>
-          In the meantime, feel free to follow us on Instagram <strong>@vitrinetaj</strong> for behind-the-scenes updates.
-        </p>
+      <div class="success-msg" id="successMsg">
+        <h3>Request <em>received.</em></h3>
+        <p>Thank you — we'll be in touch within 24 hours to start the conversation.<br>In the meantime, feel free to follow us at <strong>@vitrinetaj</strong>.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="footer__top">
-      <div>
-        <div class="footer__logo">Vitrine <span>Taj</span></div>
-        <p class="footer__tagline">Fully custom window displays for independent shops. Engineering wonder, one window at a time.</p>
-      </div>
-      <div>
-        <div class="footer__col-title">Pages</div>
-        <div class="footer__col-links">
-          <a href="about.html">About Us</a>
-          <a href="services.html">What We Create</a>
-          <a href="process.html">Our Process</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Services</div>
-        <div class="footer__col-links">
-          <a href="services.html">Kinetic Displays</a>
-          <a href="services.html">3D Sculpture</a>
-          <a href="services.html">Painted Art</a>
-          <a href="services.html">Seasonal Displays</a>
-          <a href="services.html">Full Installation</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Get In Touch</div>
-        <div class="footer__col-links">
-          <a href="mailto:hello@vitrinetaj.com">hello@vitrinetaj.com</a>
-          <a href="contact.html">Request a Quote</a>
-          <a href="#">Instagram</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Taj LLC — All rights reserved</div>
-      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
-    </div>
-  </footer>
+<footer>
+  <div class="footer-logo">Vitrine <span>Taj</span></div>
+  <div class="footer-tagline">Engineering Wonder · Custom Window Displays</div>
+  <div class="footer-copy">© 2026 Taj LLC</div>
+</footer>
 
-  <script src="js/main.js"></script>
-  <script>
-    // Checkbox toggle
-    document.querySelectorAll('.checkbox-label').forEach(label => {
-      label.addEventListener('click', () => {
-        label.classList.toggle('checked');
-      });
-    });
-
-    // Form submit
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      const name  = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const shop  = document.getElementById('shopName').value.trim();
-      const vision = document.getElementById('vision').value.trim();
-
-      if (!name || !email || !shop || !vision) {
-        // Simple validation highlight
-        [['name',name],['email',email],['shopName',shop],['vision',vision]].forEach(([id, val]) => {
-          const el = document.getElementById(id);
-          if (!val) {
-            el.style.borderColor = 'var(--terracotta)';
-            el.addEventListener('input', () => el.style.borderColor = '', { once: true });
-          }
-        });
-        return;
-      }
-
-      document.getElementById('quoteForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-      window.scrollTo({ top: document.getElementById('formSuccess').offsetTop - 100, behavior: 'smooth' });
-    });
-  </script>
+<script src="main.js"></script>
+<script>
+document.getElementById('submitBtn').addEventListener('click', () => {
+  document.getElementById('formFields').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+});
+</script>
 </body>
 </html>

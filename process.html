@@ -1,403 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How Vitrine Taj works — from discovery call to installation. Our 4-step process for creating custom window displays.">
-  <title>Our Process — Vitrine Taj</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .process-hero { padding: calc(var(--nav-height) + 6rem) 5rem 5rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Vitrine Taj works — from first conversation to opening night.">
+<title>Process — Vitrine Taj</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.process { padding:5rem 5rem 8rem;position:relative;overflow:hidden; }
+.process-steps { display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;margin-top:5rem;position:relative; }
+.process-steps::before { content:'';position:absolute;top:1.2rem;left:0;right:0;height:1px;background:linear-gradient(to right,var(--orange),var(--blue-deep),transparent);opacity:.35; }
+.ps { position:relative;padding-top:3rem; }
+.ps-dot { position:absolute;top:0;left:0;width:1.5rem;height:1.5rem;border-radius:50%;border:1px solid var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(126,184,201,0.2); }
+.ps-dot::after { content:'';width:.5rem;height:.5rem;border-radius:50%;background:var(--blue); }
+.ps-num { font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem; }
+.ps-title { font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:1rem; }
+.ps-body { font-size:.68rem;line-height:1.95;color:var(--muted-lt); }
 
-    /* Big step blocks */
-    .step-block {
-      padding: 7rem 5rem;
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 8rem; align-items: start;
-      border-bottom: 1px solid rgba(242,235,224,.05);
-      position: relative; overflow: hidden;
-    }
-    .step-block:nth-child(even) { background: var(--dusk); }
+/* Detail blocks */
+.detail-blocks { padding:0 5rem 8rem;display:flex;flex-direction:column;gap:2px;background:rgba(126,184,201,0.04); }
+.detail-block { background:var(--night);display:grid;grid-template-columns:4rem 1fr 2fr;gap:4rem;padding:3.5rem;border:1px solid transparent;transition:background .3s,border-color .3s;align-items:start; }
+.detail-block:hover { background:var(--dusk);border-color:rgba(126,184,201,0.1); }
+.detail-block-num { font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;color:rgba(126,184,201,0.15);line-height:1; }
+.detail-block-title { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;margin-bottom:.8rem; }
+.detail-block-sub { font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue); }
+.detail-block-body { font-size:.75rem;line-height:2;color:var(--muted-lt); }
+.detail-block-body strong { color:var(--cream);font-weight:400; }
+.detail-block-body p+p { margin-top:1rem; }
 
-    .step-block__big-num {
-      position: absolute; right: 3rem; top: 3rem;
-      font-family: var(--font-display); font-size: 12rem; font-weight: 400;
-      color: rgba(242,235,224,.03); line-height: 1; pointer-events: none;
-    }
+/* FAQ */
+.faq { padding:8rem 5rem;background:var(--dusk); }
+.faq-list { margin-top:3rem;max-width:760px; }
+.faq-item { border-bottom:1px solid rgba(126,184,201,0.1); }
+.faq-q { display:flex;justify-content:space-between;align-items:center;padding:1.6rem 0;font-size:.8rem;letter-spacing:.05em;color:var(--cream);cursor:none;gap:2rem; }
+.faq-q::after { content:'+';font-size:1.2rem;color:var(--blue);flex-shrink:0;transition:transform .3s; }
+.faq-item.open .faq-q::after { transform:rotate(45deg); }
+.faq-a { font-size:.72rem;line-height:2;color:var(--muted-lt);max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease; }
+.faq-item.open .faq-a { max-height:300px;padding-bottom:1.5rem; }
 
-    .step-block__label {
-      font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: .8rem;
-    }
-    .step-block__label::before { content: ''; width: 2rem; height: 1px; background: var(--terracotta); }
-
-    .step-block__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 4rem);
-      font-weight: 400; line-height: 1.05;
-    }
-    .step-block__title em { font-style: italic; color: var(--gold); }
-
-    .step-block__body { font-size: .8rem; line-height: 2.1; color: var(--dusty); margin-bottom: 2rem; }
-    .step-block__body strong { color: var(--cream); font-weight: 400; }
-    .step-block__body p + p { margin-top: 1.2rem; }
-
-    .step-block__details {
-      display: flex; flex-direction: column; gap: 1.2rem;
-    }
-    .step-detail {
-      padding: 1.4rem 1.6rem;
-      background: rgba(242,235,224,.04);
-      border-left: 2px solid rgba(201,149,58,.25);
-      transition: border-color var(--transition-mid), background var(--transition-mid);
-    }
-    .step-detail:hover { border-color: var(--gold); background: rgba(201,149,58,.06); }
-    .step-detail__title { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--cream); margin-bottom: .4rem; }
-    .step-detail__body { font-size: .68rem; line-height: 1.8; color: var(--dusty); }
-
-    /* Timeline visual */
-    .timeline-visual {
-      padding: 5rem 5rem;
-      background: var(--terracotta);
-      display: flex; flex-direction: column; align-items: center;
-      gap: 0;
-    }
-    .tl-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      font-weight: 400; color: var(--cream);
-      text-align: center; margin-bottom: 4rem;
-    }
-    .tl-track {
-      display: flex; align-items: center; gap: 0;
-      width: 100%; max-width: 900px;
-    }
-    .tl-step {
-      flex: 1; text-align: center; position: relative;
-    }
-    .tl-step__dot {
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: rgba(242,235,224,.2);
-      border: 2px solid rgba(242,235,224,.6);
-      margin: 0 auto 1rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tl-step__dot::after {
-      content: ''; width: .6rem; height: .6rem;
-      border-radius: 50%; background: var(--cream);
-    }
-    .tl-step__name { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(242,235,224,.9); }
-    .tl-line {
-      flex: 1; height: 1px; background: rgba(242,235,224,.3); margin-bottom: 2.2rem;
-    }
-
-    /* FAQs */
-    .faq { padding: 7rem 5rem; }
-    .faq-list { margin-top: 4rem; display: flex; flex-direction: column; gap: 0; max-width: 760px; }
-    .faq-item { border-bottom: 1px solid rgba(242,235,224,.08); }
-    .faq-q {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.8rem 0; cursor: none;
-      font-family: var(--font-display); font-size: 1.15rem; font-weight: 400;
-      transition: color var(--transition-mid);
-    }
-    .faq-q:hover { color: var(--gold); }
-    .faq-q__toggle { font-size: 1.2rem; color: var(--terracotta); transition: transform var(--transition-mid); flex-shrink: 0; margin-left: 2rem; }
-    .faq-item.open .faq-q__toggle { transform: rotate(45deg); }
-    .faq-a {
-      font-size: .75rem; line-height: 2; color: var(--dusty);
-      max-height: 0; overflow: hidden;
-      transition: max-height .5s ease, padding .4s ease;
-    }
-    .faq-item.open .faq-a { max-height: 500px; padding-bottom: 1.8rem; }
-    .faq-a strong { color: var(--cream); font-weight: 400; }
-
-    /* CTA */
-    .process-cta {
-      padding: 8rem 5rem; text-align: center;
-      background: var(--dusk);
-    }
-    .process-cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 5rem);
-      font-weight: 400; margin-bottom: 2rem;
-    }
-    .process-cta__title em { font-style: italic; color: var(--gold); }
-    .process-cta__sub { font-size: .8rem; color: var(--dusty); line-height: 2; margin-bottom: 3rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-
-    @media (max-width: 1024px) {
-      .process-hero, .faq, .process-cta { padding: calc(var(--nav-height) + 3rem) 2.5rem 3rem; }
-      .step-block { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2.5rem; }
-      .step-block__big-num { font-size: 7rem; top: 1rem; right: 1rem; }
-      .timeline-visual { padding: 4rem 2.5rem; }
-      .tl-track { flex-direction: column; align-items: flex-start; gap: 2rem; }
-      .tl-line { width: 1px; height: 2rem; margin: 0 1rem 0; }
-      .tl-step { display: flex; align-items: center; gap: 1.5rem; text-align: left; }
-      .tl-step__dot { margin: 0; flex-shrink: 0; }
-    }
-  </style>
+@media(max-width:1024px){
+  .process { padding:5rem 2.5rem 6rem; }
+  .process-steps { grid-template-columns:1fr 1fr; }
+  .detail-blocks { padding:0 2.5rem 6rem; }
+  .detail-block { grid-template-columns:2.5rem 1fr;grid-template-rows:auto auto;gap:1.5rem 2rem;padding:2.5rem; }
+  .detail-block-body { grid-column:2; }
+  .faq { padding:6rem 2.5rem; }
+}
+@media(max-width:600px){
+  .process-steps { grid-template-columns:1fr; }
+}
+</style>
 </head>
 <body>
-  <div class="cursor"></div>
-  <div class="cursor-ring"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
 
-  <nav class="nav">
-    <a class="nav__logo" href="index.html">Vitrine <span>Taj</span></a>
-    <div class="nav__links">
-      <a class="nav__link" href="index.html">Home</a>
-      <a class="nav__link" href="about.html">About</a>
-      <a class="nav__link" href="services.html">What We Create</a>
-      <a class="nav__link nav__link--active" href="process.html">Process</a>
-      <a class="nav__link" href="portfolio.html">Portfolio</a>
-      <a class="nav__link" href="contact.html">Contact</a>
-    </div>
-    <a class="nav__cta" href="contact.html">Get a Quote</a>
-    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav__drawer">
-    <a class="nav__link" href="index.html">Home</a>
-    <a class="nav__link" href="about.html">About</a>
-    <a class="nav__link" href="services.html">What We Create</a>
-    <a class="nav__link" href="process.html">Process</a>
-    <a class="nav__link" href="portfolio.html">Portfolio</a>
-    <a class="nav__link" href="contact.html">Contact</a>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">Vitrine <span>Taj</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">Our Story</a>
+    <a href="services.html">What We Create</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Get a Quote</a>
   </div>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="about.html">Our Story</a>
+  <a href="services.html">What We Create</a>
+  <a href="process.html">Process</a>
+  <a href="contact.html">Get a Quote</a>
+</div>
 
-  <section class="process-hero">
-    <div class="page-hero__eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">Our Process</div>
-    <h1 class="page-hero__title" style="opacity:0;animation:riseIn .9s .4s forwards;">
-      From first hello<br>to <em>opening night.</em>
-    </h1>
-    <p class="page-hero__sub" style="opacity:0;animation:riseIn .9s .6s forwards;">
-      We've designed our process so that you always know what's happening, nothing is a surprise, and the end result exceeds what you imagined. <strong>Here's exactly how it works.</strong>
-    </p>
-  </section>
+<div class="page-hero">
+  <div class="page-hero-eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">How It Works</div>
+  <h1 style="opacity:0;animation:riseIn .9s .3s forwards;">From first conversation<br>to <em>opening night.</em></h1>
+  <p>Every project is different — but the journey follows the same four steps. <strong>You're involved at every stage</strong>, and nothing gets built without your sign-off.</p>
+</div>
 
-  <!-- STEP 01 -->
-  <section class="step-block">
-    <div class="reveal">
-      <div class="step-block__label">Step 01</div>
-      <h2 class="step-block__title">Discovery<br><em>Call</em></h2>
+<section class="process">
+  <div class="process-steps">
+    <div class="ps reveal">
+      <div class="ps-dot"></div>
+      <div class="ps-num">Step 01</div>
+      <h3 class="ps-title">Discovery Call</h3>
+      <p class="ps-body">We learn about your shop, your customers, your brand, and the story you want your window to tell. No brief needed — just a conversation.</p>
     </div>
-    <div class="reveal">
-      <div class="step-block__big-num">01</div>
-      <div class="step-block__body">
-        <p>Every project starts with a conversation — <strong>no brief required, no forms to fill in</strong>. We just talk. We want to understand your shop, your customers, what makes you different, and what feeling you want your window to create.</p>
-        <p>We'll ask questions that might surprise you. Not "what colours do you like" but "what's the first thing you want someone to feel when they stop outside your shop at 8pm?"</p>
-      </div>
-      <div class="step-block__details">
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">What we cover</div>
-          <div class="step-detail__body">Your brand, your customers, the story you want to tell, the feeling you want to create, your window dimensions, and any constraints.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">How long it takes</div>
-          <div class="step-detail__body">Usually 45–60 minutes over video call or in-person if you're local. Relaxed, no pressure.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">What you'll leave with</div>
-          <div class="step-detail__body">A clear sense of whether we're the right fit, and a timeline for receiving your initial concept proposal.</div>
-        </div>
-      </div>
+    <div class="ps reveal">
+      <div class="ps-dot"></div>
+      <div class="ps-num">Step 02</div>
+      <h3 class="ps-title">Concept &amp; Design</h3>
+      <p class="ps-body">We develop mood boards, sketches, and 3D previews of your display. You see and approve everything before we build a single piece.</p>
     </div>
-  </section>
+    <div class="ps reveal">
+      <div class="ps-dot"></div>
+      <div class="ps-num">Step 03</div>
+      <h3 class="ps-title">Build &amp; Fabricate</h3>
+      <p class="ps-body">We fabricate all elements in our studio — printing, painting, engineering, and assembling every component by hand. Progress updates throughout.</p>
+    </div>
+    <div class="ps reveal">
+      <div class="ps-dot"></div>
+      <div class="ps-num">Step 04</div>
+      <h3 class="ps-title">Install &amp; Launch</h3>
+      <p class="ps-body">We come to you, set up everything, test all motion and lighting, and hand over a window that's ready to run. Ongoing support always available.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- STEP 02 -->
-  <section class="step-block">
-    <div class="reveal">
-      <div class="step-block__label">Step 02</div>
-      <h2 class="step-block__title">Concept &amp;<br><em>Design</em></h2>
+<div class="detail-blocks">
+  <div class="detail-block reveal">
+    <div class="detail-block-num">01</div>
+    <div>
+      <div class="detail-block-sub">Week 1</div>
+      <div class="detail-block-title">Discovery Call</div>
     </div>
-    <div class="reveal">
-      <div class="step-block__big-num">02</div>
-      <div class="step-block__body">
-        <p>We go away and develop your concept from scratch — <strong>mood boards, colour palette, compositional sketches, material choices, and motion storyboards</strong>. Every element is considered in relation to every other element.</p>
-        <p>You receive a full concept presentation that shows you exactly what we plan to build, how it will move, and how it will feel. <strong>Nothing is built until you approve it.</strong> Revisions are part of the process — we get it right before we build.</p>
-      </div>
-      <div class="step-block__details">
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">What you receive</div>
-          <div class="step-detail__body">Mood boards, material samples, motion descriptions, 3D visualisations, and a full written brief for the display.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">Revisions</div>
-          <div class="step-detail__body">We include two rounds of revisions. Most projects are approved within the first or second round.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">Timeline</div>
-          <div class="step-detail__body">Concept delivery within 1–2 weeks of discovery call, depending on project scope.</div>
-        </div>
-      </div>
+    <div class="detail-block-body">
+      <p>We start with a free, no-pressure conversation. Tell us about your shop — your brand, your customers, what you sell, what you want people to feel. <strong>No formal brief needed.</strong> We ask the right questions.</p>
+      <p>By the end of the call, we'll have a clear sense of what your window could become — and you'll have a sense of whether we're the right fit.</p>
     </div>
-  </section>
+  </div>
+  <div class="detail-block reveal">
+    <div class="detail-block-num">02</div>
+    <div>
+      <div class="detail-block-sub">Weeks 2–3</div>
+      <div class="detail-block-title">Concept &amp; Design</div>
+    </div>
+    <div class="detail-block-body">
+      <p>We develop a full concept — mood boards, colour palette, structural sketches, and where applicable, 3D previews of the final display. <strong>You review and approve everything</strong> before a single component is fabricated.</p>
+      <p>This is where the magic starts. You'll see your window taking shape for the first time.</p>
+    </div>
+  </div>
+  <div class="detail-block reveal">
+    <div class="detail-block-num">03</div>
+    <div>
+      <div class="detail-block-sub">Weeks 4–7</div>
+      <div class="detail-block-title">Build &amp; Fabricate</div>
+    </div>
+    <div class="detail-block-body">
+      <p>We print, paint, engineer, wire, and assemble every element of your display in our studio. <strong>Progress photos and updates throughout</strong> — you're never left wondering what's happening.</p>
+      <p>Every kinetic component is tested extensively before we pack it up. Nothing leaves the studio until it works perfectly.</p>
+    </div>
+  </div>
+  <div class="detail-block reveal">
+    <div class="detail-block-num">04</div>
+    <div>
+      <div class="detail-block-sub">Final Week</div>
+      <div class="detail-block-title">Install &amp; Launch</div>
+    </div>
+    <div class="detail-block-body">
+      <p>We come to you. We set everything up, test every motion sequence, adjust lighting, and make sure it looks exactly right in your actual window. <strong>We don't leave until it's perfect.</strong></p>
+      <p>After install, you get a complete handover — how everything works, how to turn it on and off, and how to reach us if anything ever needs attention.</p>
+    </div>
+  </div>
+</div>
 
-  <!-- STEP 03 -->
-  <section class="step-block">
-    <div class="reveal">
-      <div class="step-block__label">Step 03</div>
-      <h2 class="step-block__title">Build &amp;<br><em>Fabricate</em></h2>
+<section class="faq">
+  <div class="reveal">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-heading">Things people<br>usually <em>ask us.</em></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-q">How long does a project take?</div>
+      <div class="faq-a">Most projects run 6–8 weeks from discovery call to install. Simpler displays can be faster; more complex kinetic builds may take a little longer. We'll give you a clear timeline after our first conversation.</div>
     </div>
-    <div class="reveal">
-      <div class="step-block__big-num">03</div>
-      <div class="step-block__body">
-        <p>Once the concept is approved, we build. <strong>Every element is designed, fabricated, printed, painted, and assembled by us</strong> — nothing is outsourced, nothing is bought off a shelf and repurposed.</p>
-        <p>We send you progress updates throughout — photos and short videos as things come together. You never have to wonder what's happening. We also do thorough motion testing and quality checks before anything leaves our studio.</p>
-      </div>
-      <div class="step-block__details">
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">What's built in-house</div>
-          <div class="step-detail__body">3D modelling, printing, painting, mechanism engineering, electronics, assembly, and finishing. Everything.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">Progress updates</div>
-          <div class="step-detail__body">Regular photo and video updates so you can see your display coming to life before delivery.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">Timeline</div>
-          <div class="step-detail__body">Build time varies by project complexity — typically 3–8 weeks from concept approval.</div>
-        </div>
-      </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Do I need to know what I want before reaching out?</div>
+      <div class="faq-a">Not at all. Many of our clients come to us with nothing more than "I want my window to feel magical." That's enough to start. We're good at drawing ideas out through conversation.</div>
     </div>
-  </section>
+    <div class="faq-item reveal">
+      <div class="faq-q">What does it cost?</div>
+      <div class="faq-a">Every project is custom, so pricing varies. We'll discuss budget openly in our first call — there's no awkwardness about it. We work with a range of budgets and will always be honest about what's achievable.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Do you do seasonal swaps?</div>
+      <div class="faq-a">Yes. Many clients work with us on an ongoing basis — updating their display for the holidays, new seasons, or product launches. We offer maintenance and swap-out packages.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Do you travel for installs?</div>
+      <div class="faq-a">Yes. We travel to install every display ourselves — we won't ship you a crate and wish you luck. Travel costs are factored into the project quote.</div>
+    </div>
+  </div>
+</section>
 
-  <!-- STEP 04 -->
-  <section class="step-block">
-    <div class="reveal">
-      <div class="step-block__label">Step 04</div>
-      <h2 class="step-block__title">Install &amp;<br><em>Launch</em></h2>
-    </div>
-    <div class="reveal">
-      <div class="step-block__big-num">04</div>
-      <div class="step-block__body">
-        <p>We come to you. We handle the full installation — <strong>everything secured, positioned, motion tested, and running</strong> before we leave. We'll walk you through how to operate and maintain your display, and leave you with written care instructions.</p>
-        <p>This is the moment the window comes alive in your shop — and we love being there for it. Most installations take half a day to a full day depending on complexity.</p>
-      </div>
-      <div class="step-block__details">
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">What's included</div>
-          <div class="step-detail__body">Full on-site installation, motion testing, positioning adjustments, operational handover, and written care guide.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">After install</div>
-          <div class="step-detail__body">We're available for questions and support. Maintenance visits and seasonal swap-outs can be arranged as ongoing service.</div>
-        </div>
-        <div class="step-detail hoverable">
-          <div class="step-detail__title">The moment</div>
-          <div class="step-detail__body">We switch it on together. There's nothing better than seeing it running in your window for the first time.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="footer-logo">Vitrine <span>Taj</span></div>
+  <div class="footer-tagline">Engineering Wonder · Custom Window Displays</div>
+  <div class="footer-copy">© 2026 Taj LLC</div>
+</footer>
 
-  <!-- TIMELINE VISUAL -->
-  <section class="timeline-visual">
-    <h2 class="tl-title">From hello to installed — a typical project</h2>
-    <div class="tl-track">
-      <div class="tl-step"><div class="tl-step__dot"></div><div class="tl-step__name">Discovery Call<br><span style="opacity:.6;font-size:.5rem;">Week 1</span></div></div>
-      <div class="tl-line"></div>
-      <div class="tl-step"><div class="tl-step__dot"></div><div class="tl-step__name">Concept Delivery<br><span style="opacity:.6;font-size:.5rem;">Week 2–3</span></div></div>
-      <div class="tl-line"></div>
-      <div class="tl-step"><div class="tl-step__dot"></div><div class="tl-step__name">Approval &amp; Build<br><span style="opacity:.6;font-size:.5rem;">Week 3–8</span></div></div>
-      <div class="tl-line"></div>
-      <div class="tl-step"><div class="tl-step__dot"></div><div class="tl-step__name">Installation<br><span style="opacity:.6;font-size:.5rem;">Week 8–10</span></div></div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="reveal">
-      <div class="section-label">FAQs</div>
-      <h2 class="section-heading">Questions we<br><em>hear a lot.</em></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q hoverable">Do I need to know what I want before contacting you? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">Not at all. Most of our clients come to us with a feeling rather than a brief — "I want it to feel magical" or "I want people to stop and try to figure out how it works." <strong>That's more than enough to start.</strong> The concept development process is where the specifics emerge.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q hoverable">My shop window is small. Does that matter? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">Not at all. <strong>Some of the most striking displays we've conceived are for small windows</strong> — constraint often produces the most creative work. We design for the space you have.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q hoverable">How much does a display cost? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">We don't publish pricing because every project is different — a single sculptural piece differs significantly from a full kinetic installation with painted backdrops. <strong>We'll give you a clear quote after the discovery call</strong>, once we understand your vision and scope. We work with independent shops and price accordingly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q hoverable">Do you travel for installations? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">Yes. We're available to travel for installation depending on location and project size. <strong>Get in touch and we'll figure it out together.</strong></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q hoverable">Can I update or refresh my display later? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">Absolutely — in fact, we'd love to plan this with you from the start. <strong>We design modular systems where possible</strong> so that seasonal refreshes are efficient and cost-effective. We offer ongoing maintenance and swap-out services for all our clients.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q hoverable">What if I want to change the concept after approval? <span class="faq-q__toggle">+</span></div>
-        <div class="faq-a">Changes are easier to accommodate early. We include two revision rounds during concept stage specifically so we land on the right design before building. <strong>Major changes after build sign-off may affect timeline and cost</strong> — we'll always be transparent about this.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="process-cta">
-    <div class="reveal">
-      <h2 class="process-cta__title">Ready to start<br>your <em>discovery call?</em></h2>
-      <p class="process-cta__sub">No brief needed. No pressure. Just a conversation about your shop and what's possible.</p>
-      <a class="btn btn--fill" href="contact.html"><span>Get In Touch</span></a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer__top">
-      <div>
-        <div class="footer__logo">Vitrine <span>Taj</span></div>
-        <p class="footer__tagline">Fully custom window displays for independent shops. Engineering wonder, one window at a time.</p>
-      </div>
-      <div>
-        <div class="footer__col-title">Pages</div>
-        <div class="footer__col-links">
-          <a href="about.html">About Us</a>
-          <a href="services.html">What We Create</a>
-          <a href="process.html">Our Process</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Services</div>
-        <div class="footer__col-links">
-          <a href="services.html">Kinetic Displays</a>
-          <a href="services.html">3D Sculpture</a>
-          <a href="services.html">Painted Art</a>
-          <a href="services.html">Seasonal Displays</a>
-          <a href="services.html">Full Installation</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Get In Touch</div>
-        <div class="footer__col-links">
-          <a href="mailto:hello@vitrinetaj.com">hello@vitrinetaj.com</a>
-          <a href="contact.html">Request a Quote</a>
-          <a href="#">Instagram</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Taj LLC — All rights reserved</div>
-      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-  <script>
-    // FAQ accordion
-    document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-      });
-    });
-  </script>
+<script src="main.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
 </body>
 </html>

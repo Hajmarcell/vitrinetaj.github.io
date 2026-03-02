@@ -1,351 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The story behind Vitrine Taj — two engineers and artists inspired by European shop windows to bring that magic to independent shops.">
-  <title>About Us — Vitrine Taj</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .about-hero { padding: calc(var(--nav-height) + 6rem) 5rem 4rem; }
-    .about-hero__inner {
-      display: grid; grid-template-columns: 1.1fr 1fr; gap: 8rem; align-items: end;
-    }
-    .about-hero__title {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 6vw, 7.5rem);
-      font-weight: 400; line-height: .98;
-      opacity: 0; animation: riseIn 1s .3s forwards;
-    }
-    .about-hero__title em { font-style: italic; color: var(--gold); }
-    .about-hero__right {
-      opacity: 0; animation: riseIn 1s .6s forwards;
-      padding-bottom: .5rem;
-    }
-    .about-hero__pull {
-      font-family: var(--font-display);
-      font-size: 1.4rem; font-style: italic; line-height: 1.5;
-      color: var(--cream); border-left: 2px solid var(--terracotta);
-      padding-left: 1.5rem; margin-bottom: 2rem;
-    }
-    .about-hero__sub { font-size: .8rem; line-height: 2; color: var(--dusty); }
-    .about-hero__sub strong { color: var(--cream); font-weight: 400; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The story behind Vitrine Taj — two engineers and artists inspired by European shop windows.">
+<title>Our Story — Vitrine Taj</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.about { padding:9rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;position:relative;overflow:hidden; }
+.about::before { content:'VITRINE';position:absolute;right:-5rem;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:18vw;font-weight:400;color:rgba(126,184,201,.025);pointer-events:none;white-space:nowrap;letter-spacing:-.02em; }
+.about-text { font-size:.82rem;line-height:2.1;color:var(--muted-lt);margin-top:2.5rem; }
+.about-text p+p { margin-top:1.5rem; }
+.about-text strong { color:var(--cream);font-weight:400; }
+.about-card { background:var(--dusk);padding:3rem;border-left:2px solid var(--gold); }
+.about-card-eyebrow { font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem; }
+.about-card-quote { font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;line-height:1.5;color:var(--cream); }
+.about-card-attr { margin-top:1.5rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted); }
+.about-tags { display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem; }
+.tag { font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;padding:.5rem 1.1rem;border:1px solid rgba(126,184,201,0.15);color:var(--muted-lt);transition:all .3s; }
+.tag:hover { border-color:var(--blue);color:var(--cream); }
 
-    /* Origin story */
-    .origin {
-      padding: 6rem 5rem;
-      background: var(--dusk);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;
-      position: relative; overflow: hidden;
-    }
-    .origin::before {
-      content: 'VITRINE';
-      position: absolute; left: -3rem; top: 50%; transform: translateY(-50%);
-      font-family: var(--font-display); font-size: 18vw; font-weight: 400;
-      color: rgba(242,235,224,.018); pointer-events: none; white-space: nowrap;
-    }
-    .origin__body { font-size: .82rem; line-height: 2.1; color: var(--dusty); margin-top: 2rem; }
-    .origin__body p + p { margin-top: 1.4rem; }
-    .origin__body strong { color: var(--cream); font-weight: 400; }
+/* Europe section */
+.europe { padding:8rem 5rem;background:var(--orange);display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center; }
+.europe h2 { font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,4rem);font-weight:400;line-height:1.1;color:var(--cream); }
+.europe h2 em { font-style:italic;color:rgba(240,232,216,.75); }
+.europe-body { font-size:.82rem;line-height:2.1;color:rgba(240,232,216,.85); }
+.europe-body p+p { margin-top:1.4rem; }
+.europe-body strong { color:var(--cream);font-weight:400; }
 
-    /* Europe moment */
-    .europe-moment {
-      background: var(--terracotta);
-      padding: 5rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-    }
-    .europe-moment__title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 3.5rem);
-      font-weight: 400; line-height: 1.1; color: var(--cream);
-    }
-    .europe-moment__title em { font-style: italic; color: rgba(242,235,224,.7); }
-    .europe-moment__body { font-size: .82rem; line-height: 2.1; color: rgba(242,235,224,.8); }
-    .europe-moment__body p + p { margin-top: 1.2rem; }
-    .europe-moment__body strong { color: var(--cream); font-weight: 400; }
+/* Values */
+.values { padding:8rem 5rem;background:var(--dusk); }
+.values-list { margin-top:4rem;display:flex;flex-direction:column; }
+.value-item { display:grid;grid-template-columns:3rem 1fr 2fr;gap:3rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,.06); }
+.value-num { font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);padding-top:.2rem; }
+.value-title { font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400; }
+.value-body { font-size:.72rem;line-height:1.95;color:var(--muted-lt); }
+.value-body strong { color:var(--cream);font-weight:400; }
 
-    /* Skills */
-    .skills { padding: 7rem 5rem; }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      background: rgba(242,235,224,.05); margin-top: 4rem;
-    }
-    .skill-card {
-      background: var(--night); padding: 3rem 2.5rem;
-      transition: background var(--transition-mid);
-      position: relative;
-    }
-    .skill-card:hover { background: var(--dusk-light); }
-    .skill-card__icon { font-size: 2rem; margin-bottom: 1.5rem; }
-    .skill-card__title {
-      font-family: var(--font-display); font-size: 1.3rem;
-      font-weight: 400; margin-bottom: .8rem;
-    }
-    .skill-card__body { font-size: .7rem; line-height: 1.95; color: var(--dusty); }
-
-    /* Values */
-    .values { padding: 7rem 5rem; background: var(--dusk); }
-    .values-list {
-      margin-top: 4rem; display: flex; flex-direction: column; gap: 0;
-    }
-    .value-item {
-      display: grid; grid-template-columns: 3rem 1fr 2fr; gap: 3rem;
-      align-items: start; padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(242,235,224,.07);
-    }
-    .value-num { font-size: .55rem; letter-spacing: .25em; color: var(--terracotta); padding-top: .2rem; }
-    .value-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; }
-    .value-body { font-size: .72rem; line-height: 1.95; color: var(--dusty); }
-    .value-body strong { color: var(--cream); font-weight: 400; }
-
-    /* CTA */
-    .about-cta {
-      padding: 8rem 5rem;
-      text-align: center;
-    }
-    .about-cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 4.5rem);
-      font-weight: 400; margin-bottom: 2rem;
-    }
-    .about-cta__title em { font-style: italic; color: var(--gold); }
-    .about-cta__sub { font-size: .8rem; color: var(--dusty); margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 2; }
-    .about-cta__actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-
-    @media (max-width: 1024px) {
-      .about-hero { padding: calc(var(--nav-height) + 3rem) 2.5rem 3rem; }
-      .about-hero__inner, .origin, .europe-moment { grid-template-columns: 1fr; gap: 3rem; }
-      .europe-moment { padding: 4rem 2.5rem; }
-      .skills, .values { padding: 5rem 2.5rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .value-item { grid-template-columns: 2rem 1fr; grid-template-rows: auto auto; }
-      .value-body { grid-column: 2; }
-      .about-cta { padding: 6rem 2.5rem; }
-    }
-  </style>
+@media(max-width:1024px){
+  .about,.europe,.values { padding:6rem 2.5rem; }
+  .about,.europe { grid-template-columns:1fr;gap:3rem; }
+  .value-item { grid-template-columns:2rem 1fr;grid-template-rows:auto auto; }
+  .value-body { grid-column:2; }
+}
+</style>
 </head>
 <body>
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
 
-  <div class="cursor"></div>
-  <div class="cursor-ring"></div>
-
-  <nav class="nav">
-    <a class="nav__logo" href="index.html">Vitrine <span>Taj</span></a>
-    <div class="nav__links">
-      <a class="nav__link" href="index.html">Home</a>
-      <a class="nav__link nav__link--active" href="about.html">About</a>
-      <a class="nav__link" href="services.html">What We Create</a>
-      <a class="nav__link" href="process.html">Process</a>
-      <a class="nav__link" href="portfolio.html">Portfolio</a>
-      <a class="nav__link" href="contact.html">Contact</a>
-    </div>
-    <a class="nav__cta" href="contact.html">Get a Quote</a>
-    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <div class="nav__drawer">
-    <a class="nav__link" href="index.html">Home</a>
-    <a class="nav__link" href="about.html">About</a>
-    <a class="nav__link" href="services.html">What We Create</a>
-    <a class="nav__link" href="process.html">Process</a>
-    <a class="nav__link" href="portfolio.html">Portfolio</a>
-    <a class="nav__link" href="contact.html">Contact</a>
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">Vitrine <span>Taj</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">Our Story</a>
+    <a href="services.html">What We Create</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Get a Quote</a>
   </div>
+  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="about.html">Our Story</a>
+  <a href="services.html">What We Create</a>
+  <a href="process.html">Process</a>
+  <a href="contact.html">Get a Quote</a>
+</div>
 
-  <!-- HERO -->
-  <section class="about-hero">
-    <div class="about-hero__inner">
-      <h1 class="about-hero__title">
-        Two engineers.<br>
-        One painter.<br>
-        <em>One window<br>in Paris.</em>
-      </h1>
-      <div class="about-hero__right">
-        <div class="about-hero__pull">"We kept stopping at shop windows. We couldn't help it. And then we came home — and we couldn't stop thinking about why."</div>
-        <p class="about-hero__sub">
-          Vitrine Taj is a <strong>bespoke window display studio</strong> founded by a couple of engineers and artists who fell in love with the magic of European shop windows — and decided to bring it back to independent shops everywhere.
-        </p>
-      </div>
-    </div>
-  </section>
+<div class="page-hero">
+  <div class="page-hero-eyebrow" style="opacity:0;animation:riseIn .8s .2s forwards;">Our Story</div>
+  <h1 style="opacity:0;animation:riseIn .9s .3s forwards;">Built by two engineers<br>who <em>fell in love</em><br>with a window.</h1>
+  <p>We're a couple of engineers and artists — one a painter, both tinkerers — who spent years designing, 3D printing, and building things from the ground up just for the joy of it. Then we went to Europe, and everything changed.</p>
+</div>
 
-  <div class="ticker">
-    <div class="ticker__track">
-      <span>Engineering &amp; Art</span><span>·</span><span>Built by Hand</span><span>·</span>
-      <span>Inspired by Europe</span><span>·</span><span>Designed for Wonder</span><span>·</span>
-      <span>100% Custom</span><span>·</span><span>Taj LLC</span><span>·</span>
-      <span>Engineering &amp; Art</span><span>·</span><span>Built by Hand</span><span>·</span>
-      <span>Inspired by Europe</span><span>·</span><span>Designed for Wonder</span><span>·</span>
-      <span>100% Custom</span><span>·</span><span>Taj LLC</span><span>·</span>
+<section class="about">
+  <div class="reveal">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-heading">Engineering<br>&amp; art, <em>together.</em></h2>
+    <div class="about-text">
+      <p>We're <strong>a couple of engineers and artists</strong> — one a painter, both tinkerers — who spent years designing, 3D printing, and building projects from the ground up just for the joy of it.</p>
+      <p>Between us we bring together <strong>mechanical engineering, fine art painting, 3D fabrication, and client-facing consulting</strong>. We know how to design something beautiful and how to build it so it actually works.</p>
+      <p>Vitrine Taj is where all of that comes together — <strong>the intersection of engineering and art</strong>, applied to the most overlooked real estate in retail: the shop window.</p>
     </div>
   </div>
+  <div class="reveal">
+    <div class="about-card">
+      <div class="about-card-eyebrow">Why it matters</div>
+      <div class="about-card-quote">"Your window is your loudest voice on the street — and most shops are whispering."</div>
+      <div class="about-card-attr">— Vitrine Taj</div>
+    </div>
+    <div class="about-tags">
+      <span class="tag">Mechanical Engineering</span>
+      <span class="tag">Fine Art &amp; Painting</span>
+      <span class="tag">3D Printing &amp; Fabrication</span>
+      <span class="tag">Motion &amp; Automation</span>
+      <span class="tag">Client-Focused</span>
+      <span class="tag">100% Custom</span>
+    </div>
+  </div>
+</section>
 
-  <!-- ORIGIN STORY -->
-  <section class="origin">
-    <div class="reveal">
-      <div class="section-label">Our Story</div>
-      <h2 class="section-heading">Born from a trip.<br><em>Built from scratch.</em></h2>
-      <div class="origin__body">
-        <p>We're a couple of <strong>engineers and artists</strong> — one a painter, both lifelong tinkerers — who have spent years designing, 3D printing, and building projects from the ground up simply because we love making things.</p>
-        <p>Between us we bring together <strong>mechanical engineering, fine art painting, software, AI, and client-facing consulting</strong>. We know how to design something beautiful. We know how to build it so it actually works. And we know how to listen to a client and translate what they want into something real.</p>
-        <p>Vitrine Taj is the place where all of that comes together — <strong>the intersection of engineering and art</strong>, applied to the most overlooked real estate in retail: the shop window.</p>
-      </div>
+<section class="europe">
+  <div class="reveal">
+    <h2>Travelling Europe,<br>something kept<br>stopping us.<br><em>The windows.</em></h2>
+  </div>
+  <div class="reveal">
+    <div class="europe-body">
+      <p>From Paris to Florence, Amsterdam to Lisbon — everywhere we went, <strong>small independent boutiques had these incredible, living window displays</strong> that made you feel something before you even stepped inside.</p>
+      <p>Wonder. Curiosity. That irresistible pull to get closer. Sometimes you'd stand there for minutes just to figure out how it worked.</p>
+      <p>We came home and couldn't stop thinking: <strong>why don't shops here feel like that?</strong> The craft, the storytelling, the theatre of a beautiful window — it seemed like a lost art.</p>
+      <p>So we decided to revive it. <strong>Vitrine Taj exists to bring that magic back — one window at a time.</strong></p>
     </div>
-    <div class="reveal">
-      <div style="background:var(--dusk-light);padding:3rem;border-left:2px solid var(--gold);">
-        <div style="font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;">Who we are</div>
-        <div style="display:flex;flex-direction:column;gap:1.4rem;margin-bottom:2rem;">
-          <div style="font-size:.72rem;line-height:1.8;color:var(--dusty);"><strong style="color:var(--cream);font-weight:400;display:block;margin-bottom:.3rem;">Mechanical Engineering</strong>Both founders trained as engineers — we understand materials, tolerances, mechanisms, and what makes something last.</div>
-          <div style="font-size:.72rem;line-height:1.8;color:var(--dusty);"><strong style="color:var(--cream);font-weight:400;display:block;margin-bottom:.3rem;">Fine Art &amp; Painting</strong>One half of Vitrine Taj is also a painter — bringing genuine artistic vision to every concept we develop.</div>
-          <div style="font-size:.72rem;line-height:1.8;color:var(--dusty);"><strong style="color:var(--cream);font-weight:400;display:block;margin-bottom:.3rem;">3D Printing &amp; Fabrication</strong>We design and print everything in-house. No outsourcing. Full control over every detail.</div>
-          <div style="font-size:.72rem;line-height:1.8;color:var(--dusty);"><strong style="color:var(--cream);font-weight:400;display:block;margin-bottom:.3rem;">Client Experience</strong>With backgrounds in consulting and AI, we know how to listen, communicate, and deliver.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EUROPE MOMENT -->
-  <section class="europe-moment">
-    <div class="reveal">
-      <h2 class="europe-moment__title">
-        Travelling through<br>Europe, something<br>kept stopping us.<br>
-        <em>The windows.</em>
-      </h2>
+<section class="values">
+  <div class="reveal">
+    <div class="section-label">What We Believe</div>
+    <h2 class="section-heading">A few things we<br>refuse to <em>compromise on.</em></h2>
+  </div>
+  <div class="values-list">
+    <div class="value-item reveal">
+      <div class="value-num">01</div>
+      <div class="value-title">Everything custom. Always.</div>
+      <div class="value-body"><strong>Every display is designed and built from scratch</strong> for your shop, your brand, and your story. We will never sell you a template or a pre-made prop. That's not a selling point — it's the entire point.</div>
     </div>
-    <div class="reveal">
-      <div class="europe-moment__body">
-        <p>From Paris to Florence, Amsterdam to Lisbon — everywhere we went, <strong>small independent boutiques had these incredible, living window displays</strong> that made you feel something before you even stepped inside.</p>
-        <p>Wonder. Curiosity. That irresistible pull to get closer, to stop, to look. Sometimes you'd stand there for minutes just to figure out how it worked or what it was trying to say.</p>
-        <p>We came home and couldn't stop thinking: <strong>why don't shops here feel like that?</strong> The craft, the storytelling, the theatre of a beautiful window — it seemed like a lost art.</p>
-        <p>So we decided to revive it. <strong>Vitrine Taj exists to bring that magic back — one window, one shop, one story at a time.</strong></p>
-      </div>
+    <div class="value-item reveal">
+      <div class="value-num">02</div>
+      <div class="value-title">The window is a stage.</div>
+      <div class="value-body">We treat every window like a theatre set — <strong>every element serves the story</strong>. Colour, light, motion, texture, scale: nothing is accidental. Every decision earns its place.</div>
     </div>
-  </section>
+    <div class="value-item reveal">
+      <div class="value-num">03</div>
+      <div class="value-title">Small shops deserve great design.</div>
+      <div class="value-body">The best independent boutiques in Paris and Florence don't have million-dollar budgets — they have passion, craft, and a commitment to the customer experience. <strong>We exist to serve that kind of shop.</strong></div>
+    </div>
+    <div class="value-item reveal">
+      <div class="value-num">04</div>
+      <div class="value-title">Curiosity is the point.</div>
+      <div class="value-body">The best displays don't just look nice — they make people <strong>stop, tilt their head, and wonder</strong>. We design for that moment of pause. That's the magic we're chasing with every project.</div>
+    </div>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section class="skills">
-    <div class="reveal">
-      <div class="section-label">What We Bring</div>
-      <h2 class="section-heading">Engineering meets<br><em>art meets wonder.</em></h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">⚙️</div>
-        <h3 class="skill-card__title">Mechanical Engineering</h3>
-        <p class="skill-card__body">We design and build every mechanism from scratch — motors, linkages, timing systems, and structural components that work reliably day in, day out.</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">🎨</div>
-        <h3 class="skill-card__title">Fine Art &amp; Painting</h3>
-        <p class="skill-card__body">Original painted backdrops, illustrated scenes, and hand-finished surfaces that bring a warmth and humanity no digital print can match.</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">🖨️</div>
-        <h3 class="skill-card__title">3D Design &amp; Fabrication</h3>
-        <p class="skill-card__body">From concept sketches to finished sculpture, we model and print everything in-house — giving us total control over form, detail, and material.</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">💡</div>
-        <h3 class="skill-card__title">Concept &amp; Storytelling</h3>
-        <p class="skill-card__body">Every display starts with a story. We develop the full narrative — mood, palette, composition, and the feeling we want to create — before anything is built.</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">🤝</div>
-        <h3 class="skill-card__title">Client Partnership</h3>
-        <p class="skill-card__body">With backgrounds in consulting and software, we speak your language. We listen closely, communicate clearly, and deliver what we promise.</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card__icon">🔧</div>
-        <h3 class="skill-card__title">End-to-End Delivery</h3>
-        <p class="skill-card__body">We handle everything from first sketch to final installation. You receive a finished display — nothing left for you to figure out.</p>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="footer-logo">Vitrine <span>Taj</span></div>
+  <div class="footer-tagline">Engineering Wonder · Custom Window Displays</div>
+  <div class="footer-copy">© 2026 Taj LLC</div>
+</footer>
 
-  <!-- VALUES -->
-  <section class="values">
-    <div class="reveal">
-      <div class="section-label">What We Believe</div>
-      <h2 class="section-heading">A few things we<br>refuse to <em>compromise on.</em></h2>
-    </div>
-    <div class="values-list">
-      <div class="value-item reveal">
-        <div class="value-num">01</div>
-        <div class="value-title">Everything custom. Always.</div>
-        <div class="value-body">We will never sell you a template or a pre-made prop. <strong>Every single display is designed and built from scratch</strong> for your shop, your brand, and your story. That's not a selling point — it's the entire point.</div>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">02</div>
-        <div class="value-title">The window is a stage.</div>
-        <div class="value-body">We treat every window like a theatre set — <strong>every element serves the story</strong>. Colour, light, motion, texture, scale: nothing is accidental. Every decision earns its place in the composition.</div>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">03</div>
-        <div class="value-title">Small shops deserve great design.</div>
-        <div class="value-body">The best independent boutiques in Paris and Florence don't have million-dollar budgets — they have passion, craft, and a commitment to the customer experience. <strong>We exist to serve that kind of shop.</strong></div>
-      </div>
-      <div class="value-item reveal">
-        <div class="value-num">04</div>
-        <div class="value-title">Curiosity is the point.</div>
-        <div class="value-body">The best displays don't just look nice — they make people <strong>stop, tilt their head, and wonder</strong>. We design for that moment of pause. That's the magic we're chasing with every project.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="about-cta">
-    <div class="reveal">
-      <h2 class="about-cta__title">Want to work with us?<br><em>Let's talk.</em></h2>
-      <p class="about-cta__sub">Every project starts with a conversation. Tell us about your shop and we'll tell you what's possible.</p>
-      <div class="about-cta__actions">
-        <a class="btn btn--fill" href="contact.html"><span>Start a Project</span></a>
-        <a class="btn btn--ghost" href="services.html">See What We Create →</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer__top">
-      <div>
-        <div class="footer__logo">Vitrine <span>Taj</span></div>
-        <p class="footer__tagline">Fully custom window displays for independent shops. Engineering wonder, one window at a time.</p>
-      </div>
-      <div>
-        <div class="footer__col-title">Pages</div>
-        <div class="footer__col-links">
-          <a href="about.html">About Us</a>
-          <a href="services.html">What We Create</a>
-          <a href="process.html">Our Process</a>
-          <a href="portfolio.html">Portfolio</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Services</div>
-        <div class="footer__col-links">
-          <a href="services.html">Kinetic Displays</a>
-          <a href="services.html">3D Sculpture</a>
-          <a href="services.html">Painted Art</a>
-          <a href="services.html">Seasonal Displays</a>
-          <a href="services.html">Full Installation</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Get In Touch</div>
-        <div class="footer__col-links">
-          <a href="mailto:hello@vitrinetaj.com">hello@vitrinetaj.com</a>
-          <a href="contact.html">Request a Quote</a>
-          <a href="#">Instagram</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Taj LLC — All rights reserved</div>
-      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
